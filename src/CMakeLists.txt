@@ -170,6 +170,14 @@ elseif (EMSCRIPTEN)
 	endif()
 elseif (UNIX)
 	message(STATUS "Box2D using Unix")
+
+
+# Fix for missing math library link in shared object
+if(UNIX AND NOT APPLE)
+    target_link_libraries(box2d PRIVATE m)
+endif()
+
+
 	target_compile_options(box2d PRIVATE -Wmissing-prototypes -Wall -Wextra -pedantic -Wno-unused-value)
 	if ("${CMAKE_HOST_SYSTEM_PROCESSOR}" STREQUAL "aarch64")
 		# raspberry pi

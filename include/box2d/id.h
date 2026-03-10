@@ -82,11 +82,14 @@ typedef struct b2ContactId
 } b2ContactId;
 
 #ifdef __cplusplus
-	#define B2_NULL_ID {}
-	#define B2_ID_INLINE inline
+    #define B2_NULL_ID {}
+//	#define B2_ID_INLINE inline
+    #define B2_ID_INLINE inline __attribute__((visibility("default")))
 #else
-	#define B2_NULL_ID { 0 }
-	#define B2_ID_INLINE static inline
+    #define B2_NULL_ID { 0 }
+    // Wir schreiben den Export-Befehl direkt hin, statt das Makro zu nutzen
+//	#define B2_ID_INLINE static inline
+    #define B2_ID_INLINE __attribute__((weak)) __attribute__((visibility("default")))
 #endif
 
 /// Use these to make your identifiers null.
