@@ -52,6 +52,13 @@ endif()
 option(BOX2D_DISABLE_SIMD "Disable SIMD math (slower)" OFF)
 option(BOX2D_COMPILE_WARNING_AS_ERROR "Compile warnings as errors" OFF)
 
+option(BOX2D_CUSTOM_EXPORTS "Nutze modifizierte Export-Attribute für Lazarus" OFF)
+
+if(BOX2D_CUSTOM_EXPORTS)
+    add_compile_definitions(USE_CUSTOM_BOX2D_EXPORTS)
+endif()
+
+
 if(CMAKE_SYSTEM_PROCESSOR MATCHES "x86_64|AMD64")
 	cmake_dependent_option(BOX2D_AVX2 "Enable AVX2" OFF "NOT BOX2D_DISABLE_SIMD" OFF)
 endif()
