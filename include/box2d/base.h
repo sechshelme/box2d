@@ -49,6 +49,8 @@
         #define B2_ZERO_INIT {0}
     #endif
 #endif
+
+
 // clang-format on
 
 /**
